@@ -24,18 +24,11 @@ void Cmebot::initWordDatabase()
         write << "opened123123123" << endl;
     }*/
     receive->open("db.meb");
-
-    #ifdef DEBUG_MODE
-    std::string logbuffer;
-    if(receive->is_open()) *receive >> logbuffer;
-    else logbuffer += "Can't open database!";
-    cout << logbuffer << endl;
-    #endif DEBUG_MODE
-
 }
 
-void Cmebot::regexHandle()
+void Cmebot::onMessageProcessing(std::string msg)
 {
+    
     std::regex reg("([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})");
     std::cmatch cm;
 
@@ -47,12 +40,6 @@ void Cmebot::regexHandle()
     {
         // for loop for pieces of db.meb's strings;
     }
-    // ... CONTINUE FAST
-}
-
-void Cmebot::onMessageProcessing(std::string msg)
-{
-    
     if(msg.find("Hey") != std::string::npos) return Cmebot::onMessageSending("Hello!");
 }
 

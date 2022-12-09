@@ -24,7 +24,6 @@ public:
     void onMessageSending(std::string msg);
     void initWordDatabase();
     void writeWordDatabase(std::string word);
-    void regexHandle();
     //([\\w\\s]+)(:)([\\w\\s]+)
     // "([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})" - works for regex
 private:
