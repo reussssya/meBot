@@ -45,5 +45,6 @@ void Cmebot::onMessageProcessing(std::string msg)
 
 void Cmebot::onMessageSending(std::string msg)
 {
+    
     cout << msg << endl;
 }

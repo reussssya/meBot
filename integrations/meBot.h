@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-
+#include <conio.h>
 #pragma warning(disable : 711)
 
 using std::cout;
