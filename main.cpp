@@ -4,28 +4,14 @@
 int main()
 {
     setlocale(LC_ALL, ".1251");
-<<<<<<< HEAD
 
-
-
-    mebot::initWordDatabase();
-
-
-    std::string buffer;
-    cin >> buffer;
-
-    mebot::onMessageProcessing(buffer);
-
-
-=======
     std::string answer;
-    //Cmebot mebot;
+
     cin >> answer;
 
     std::ifstream receive("db.meb");
     if(receive.is_open())
     {
-        //cout << "opened\n";
         std::regex reg("([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})");
         std::cmatch cm;
         std::string buffer;
@@ -33,18 +19,19 @@ int main()
         {
             if(std::regex_match(buffer.c_str(), cm, reg))
             {
-                if(answer.find(cm[1]) != std::string::npos)
-                {
-                    cout << cm[3];
-                }
+                std::string thequestion = cm[1];
+                std::string theanswer = cm[3];
+                std::transform(answer.begin(), answer.end(),answer.begin(), ::toupper); // to UPPERCASE the answer
 
+                if(thequestion.find(answer) != std::string::npos)
+                {
+                    cout << theanswer;
+                }
             }
         }
         // PERFECTLY WORKS)
-
     }
     
->>>>>>> tmp
 
     /*while(true)
     {
