@@ -31,9 +31,9 @@ int Cmebot::getDictionarySize()
 {
     return dictionary_size;
 }
-
-void Cmebot::onMessageProcessing(std::string msg = "got this")
+void Cmebot::onMessageProcessing(std::string msg)
 {
+    
     std::regex reg("([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})");
     std::cmatch cm;
     cout << "check if open\n";
@@ -66,5 +66,6 @@ void Cmebot::onMessageProcessing(std::string msg = "got this")
 
 void Cmebot::onMessageSending(std::string msg)
 {
+    
     cout << msg << endl;
 }

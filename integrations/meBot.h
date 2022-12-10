@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-
+#include <conio.h>
 #pragma warning(disable : 711)
 
 using std::cout;
@@ -20,11 +20,12 @@ public:
 
     void onMessageProcessing(std::string msg);
     void onMessageSending(std::string msg);
-    void initWordDatabase(std::ifstream &db);
+    void initWordDatabase();
     void writeWordDatabase(std::string word);
     void regexHandle(std::string msg);
     int getDictionarySize();
 
+    //([\\w\\s]+)(:)([\\w\\s]+)
     // "([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})" - works for regex
 private:
     unsigned dictionary_size = 2;
