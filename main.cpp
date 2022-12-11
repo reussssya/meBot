@@ -4,44 +4,38 @@
 int main()
 {
     setlocale(LC_ALL, ".1251");
-
+    bool bLoop = true;
+    Cmebot bot;
     std::string answer;
 
-    cin >> answer;
-
-    std::ifstream receive("db.meb");
-    if(receive.is_open())
+    std::ifstream *receiver = new std::ifstream("db.meb");
+    
+    if(bLoop)
     {
-        std::regex reg("([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})");
-        std::cmatch cm;
-        std::string buffer;
-        while(getline(receive, buffer))
+        while(answer != "terminate")
         {
-            if(std::regex_match(buffer.c_str(), cm, reg))
+            answer.clear();
+            std::getline(std::cin, answer);
+            if(answer.size() != 0)
             {
-                std::string thequestion = cm[1];
-                std::string theanswer = cm[3];
-                std::transform(answer.begin(), answer.end(),answer.begin(), ::toupper); // to UPPERCASE the answer
-
-                if(thequestion.find(answer) != std::string::npos)
-                {
-                    cout << theanswer;
-                }
+                bot.onMessageProcessing(answer,*receiver);
             }
         }
-        // PERFECTLY WORKS)
+    }
+    else
+    {
+        std::getline(std::cin, answer);
+        if(answer == "terminate") return 1;
+        else
+        {
+            if(answer.size() != 0)
+            {
+                bot.onMessageProcessing(answer, *receiver);
+                answer = "";
+            }
+        }
     }
     
-
-    /*while(true)
-    {
-        cin >> buffer;
-
-        if(buffer.size() != 0)
-        {
-            mebot.onMessageProcessing(buffer);
-        }
-    }*/
 
 
     return 0;

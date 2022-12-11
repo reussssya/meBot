@@ -8,6 +8,7 @@
 #include <regex>
 #include <algorithm>
 #include <conio.h>
+#include <cstdio>
 
 using std::cout;
 using std::cin;
@@ -17,16 +18,14 @@ class Cmebot
 {
 public:
     Cmebot();
+    Cmebot(bool initDB);
     ~Cmebot();
 
-    void onMessageProcessing(std::string msg);
+    void onMessageProcessing(std::string msg, std::ifstream &db);
     void onMessageSending(std::string msg);
-    void initWordDatabase();
     void writeWordDatabase(std::string word);
     void regexHandle(std::string msg);
     int getDictionarySize();
-
-    //([\\w\\s]+)(:)([\\w\\s]+)
     // "([\\w\\s]{0,1024})" "(:)" "([\\w\\s]{0,1024})" - works for regex
 private:
     unsigned dictionary_size = 2;
